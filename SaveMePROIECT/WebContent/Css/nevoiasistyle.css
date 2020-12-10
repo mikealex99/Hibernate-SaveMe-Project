@@ -1,0 +1,305 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+*{
+	margin:0;
+	padding:0;
+	font-family: 'Josefin Sans', sans-serif;
+	
+}
+
+body{
+	box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+	width:100%;
+	height:100vh;
+	background-image:url('../Imagini/cereajutorblur.jpg');
+ 	background-repeat: repeat-y;
+ 	background-size: cover;
+}
+
+
+
+header nav{
+	position:relative;
+	width:100%;
+	height:80px;
+	background-color: #0007;
+	line-height:80px;
+}
+
+header nav ul{
+	float:right;
+margin-left:28px;
+} 
+
+header nav ul li{
+	list-style-type:none;
+	display:inline-block;
+	transition: 0.75s all;
+	
+}
+
+header nav ul li:hover{
+	background-color: #fda500;
+}
+
+ header nav ul li a{
+	text-decoration:none;
+	color: #fff;
+	padding:15px;
+	font-size:20px;
+	font-weight:bold; 
+}
+
+header nav ul li a:hover{
+	font-style:italic; 
+}
+
+.card{
+	position:relative;
+	height:514px;
+	width:900px;
+	margin:118px auto;
+	background:#dddddd;
+	box-shadow:7px 7px 50px 0px rgba(0,0,0,.7);
+	
+}
+
+.thumbnail{
+float:left;
+position:relative;
+left:30px;
+top:-30px;
+height:406px;
+width:530px;
+box-shadow:8px 8px 50px 0px rgba(0,0,0,.7);
+overflow:hidden;
+}
+
+.thumbnail img{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+	height:100%;
+	width:100%;
+}
+
+.right{
+	margin-left:600px;
+	margin-right:20px;
+	margin-top:-352px;
+}
+
+h4{
+	background:#82c0ff;
+	height:35px;
+	width:210px;
+	border-radius:15px;
+	padding-top:5px;
+	text-align:center;
+}
+
+p{
+	text-align:justify;
+	padding-top:10px;
+	font-size:.95rem;
+	line-height:150%;
+	color:black;
+}
+
+h5{
+	position:absolute;
+	left:30px;
+	top:450px;
+	font-size:6rem;
+	color:#c3c3c3;
+}
+
+h6{
+	position:absolute;
+	left:60px;
+	top:433px;
+	font-size:2rem;
+	color:#c3c3c3;	
+}
+.luna{
+	font-size:37px;
+}
+.ziua{
+	margin-top:28px;
+	margin-left:50px;
+}
+.rotate{
+	margin-top:46px;
+	margin-right:68px;
+	font-size:28px;
+  transform-origin: 0 0;
+  transform: rotate(270deg);
+}
+ul{
+	margin-top:291px;
+	margin-left:263px;
+}
+
+ul li{
+	display:inline-block;
+	list-style:none;
+	padding-right:40px;
+	color:#7b7b7b;
+}
+
+ul li ul.dropdown{
+         /* Set width of the dropdown */
+        background: #acacac;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        right:0;       
+}
+    
+ul li:hover ul.dropdown{
+        display: block; /* Display the dropdown */
+}
+
+ul li ul.dropdown li{
+        display: block;
+}
+    
+.wrapper{
+	margin-left:546px;
+	margin-top:-91px;
+	
+}
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #9b9b9b;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #00ca65;
+}
+
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: black;
+}
+.wrapper .button:nth-child(3) span{
+  color: #00b55a;
+}
+
+
+.fas fa-check-circle{
+	color:blue;
+}
+
+
+.buttonAdresa{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+
+.buttonAdresa:hover{
+	padding-right:15px;
+	width: auto;
+
+}
+
+.buttonAdresa .icon{
+	  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+
+.buttonAdresa .icon:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+
+.buttonAdresa .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.buttonAdresa:hover .icon i{
+  color: #4267B2;
+}
+.buttonAdresa span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.buttonAdresa:nth-child(1) span{
+  color: #4267B2;
+}
+
+.adresa{
+	padding-left:300px;
+padding-top:30px;
+	
+}
+.Center-Container {
+  position: relative;
+  height: 100%;
+}

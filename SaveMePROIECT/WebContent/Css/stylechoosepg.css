@@ -1,0 +1,73 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+*{
+
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.general{
+	display:flex;
+}
+.ajuta,.cereajutor{
+	height:100vh;
+	width:100%;
+	
+}
+
+.ajuta{
+  background-image: url("../Imagini/ajuta.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+a{
+	text-decoration: none;
+	color:#ff8888;
+}
+
+ .txtajuta{
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+	padding-top:591px;
+	font-size:100px;
+	color:#ff8888;	
+	 text-shadow: 2px 2px 8px #FF0000;
+}
+.txtajuta:hover{
+	font-size:118px;
+	color:#6e6e6e;
+	font-style:italic;
+    text-shadow: 2px 2px 8px #ffffff;
+	
+}
+
+.cereajutor{
+  background-image: url("../Imagini/cereajutor.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.txtcereajutor{
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+	padding-top:591px;
+	font-size:100px;
+	color:#ff8888;	
+	outline:black;
+	text-shadow: 2px 2px 8px #FF0000;
+
+}
+
+.txtcereajutor:hover{
+	font-size:118px;
+	color:#6e6e6e;
+	font-style:italic;
+ 	text-shadow: 2px 2px 8px #ffffff;
+	
+}

@@ -1,0 +1,230 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+*{
+	margin:0;
+	padding:0;
+	font-family: 'Josefin Sans', sans-serif;
+}
+body{
+	width:100%;
+	height:100vh;
+	background-image:url('../Imagini/cereajutorblur.jpg');
+ 	background-repeat: repeat-y;
+ 	background-size: cover;
+}
+
+header nav{
+	position:relative;
+	width:100%;
+	height:80px;
+	background-color: #0007;
+	line-height:80px;
+}
+
+header nav ul{
+	float:right;
+	margin-right:20px;
+} 
+
+header nav ul li{
+	list-style-type:none;
+	display:inline-block;
+	transition: 0.75s all;
+}
+
+header nav ul li:hover{
+	background-color: #fda500;
+}
+
+ header nav ul li a{
+	text-decoration:none;
+	color: #fff;
+	padding:20px;
+	font-size:20px;
+	font-weight:bold; 
+}
+
+header nav ul li a:hover{
+	font-style:italic; 
+}
+
+ul li ul.dropdown{
+         /* Set width of the dropdown */
+        background: #acacac;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        right:0;       
+}
+    
+ul li:hover ul.dropdown{
+        display: block; /* Display the dropdown */
+}
+
+ul li ul.dropdown li{
+        display: block;
+}
+
+
+.wrapper{
+  margin-top:100px;
+  margin-bottom:20px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  padding: 60px 45px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 20px;
+}
+
+.wrapper .title{
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #3aaf9f;
+}
+
+
+.wrapper .form .input_field{
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 46px;
+}
+
+.wrapper .form .input_field .input{
+  width: 100%;
+  padding: 12px;
+  padding-left: 30px;
+  border: none;
+  background: #eeeeee;
+}
+
+
+
+
+
+
+
+
+
+.blog{
+	position:relative;
+	height:514px;
+	width:900px;
+	margin:100px auto;
+	background: rgba(0, 0, 0, 0.6);	
+	box-shadow:7px 7px 50px 0px rgba(0,0,0,.7);
+	margin-bottom:20px;
+}
+
+.blog .date{
+	padding-top: 37px;
+	margin-left:25px;
+	color:#fff;
+	letter-spacing:0.2rem;
+	text-transform:uppercase;
+	font-weight:600;
+}
+
+.blog h1{
+	margin-top:30px;
+	margin-left:30px;
+	color:#62b0ff;
+}
+
+.vertical { 
+    border-left: 5px solid #3aaf9f; 
+    height: auto; 
+}
+
+.blog .text{
+	font-size:20px;
+	margin-left:5px;
+	color:#fff;
+	margin-right:32px;
+}
+
+.left{
+	position:absolute;
+	bottom:0;
+	left:0;
+	margin:10px 10px 15px 82px;
+}
+
+.right{
+	position:absolute;
+	bottom:0;
+	right:0;
+	margin:10px 100px 64px 10px;
+}
+
+.right .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.right .button:hover{
+  width: 200px;
+}
+.right .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.right .button:nth-child(1):hover .icon{
+  background: #3aaf9f;
+}
+
+.right .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.right .button:hover .icon i{
+  color: #fff;
+}
+.right .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.right .button:nth-child(1) span{
+  color: #3aaf9f;
+}
+
+.btn .btnnev{
+  text-align: center;
+  background: #3aaf9f;
+  color: white;
+  padding: 16px 10px; 
+  border: none;
+  border-radius: 25px;
+  font-size:21px;
+  width: 100%;
+  margin-left:50%;
+}
+.btn .btnnev:hover{
+  color: #e0e0e0;
+  font-style:italic;  
+}
