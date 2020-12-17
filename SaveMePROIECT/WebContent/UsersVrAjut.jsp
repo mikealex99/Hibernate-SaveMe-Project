@@ -3,9 +3,13 @@
 <%@ page import="java.util.List"%>
 <%@ page import="hibernate.model.User2"%>
 <%@ page import="hibernate.model.Nevoie"%>
+<%@ page import="hibernate.model.Admin"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
 <%HibernateDao u= new HibernateDao();%>
+
+<% String Utilizator=request.getParameter("Utilizator");
+Admin existingAdmin = u.selectProfilAdmin(Utilizator); %>
 
 <%List<User2> listUser2 = u.selectAllUsers2();
 request.setAttribute("listUsers2", listUser2);%>
@@ -30,7 +34,12 @@ request.setAttribute("listUsers2", listUser2);%>
 </header>
 
 <h1 style="color:rgba(0,0,0,0.6);position:relative;text-align:center;padding-top:30px;text-shadow: -2px 0px 11px rgba(61, 57, 78, 1);">Useri "Am nevoie de ajutor"</h1>
-<a href="adminInterface.jsp" class="btn btn-success" style="margin-left: 217px;">Inapoi</a>
+<form action="adminInterfaceServlet" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" class="btn btn-success" style="border:none;margin-left: 217px;" >Inapoi</button>
+</form>
+
 <div class="container">
 <%for (User2 user2: listUser2) {   %>
 
@@ -38,6 +47,9 @@ request.setAttribute("listUsers2", listUser2);%>
 		<div class="box">
 			<div class="content">
 				<form action="updateUser2" method="post">
+					<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 	<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+				
 					<input type="hidden" class="inputID" name="Id_UserNev" value="<%=user2.getId_UserNev()%>" />
 					<input type="text" class="inputID" name="Id_user" value="<%=user2.getId()%>" />
 					<input type="text" class="inputNume" name="Nume" value="<%=user2.getNume()%>" />

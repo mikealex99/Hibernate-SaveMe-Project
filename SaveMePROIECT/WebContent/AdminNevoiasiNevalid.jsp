@@ -2,9 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List"%>
 <%@ page import="hibernate.model.Nevoie"%>
+<%@ page import="hibernate.model.Admin"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
 <%HibernateDao u= new HibernateDao();%>
+
+<% String Utilizator=request.getParameter("Utilizator");
+Admin existingAdmin = u.selectProfilAdmin(Utilizator); %>
 
 <%List<Nevoie> listNevoie = u.selectNevoieNevalid();
 request.setAttribute("listNevoi", listNevoie);%>
@@ -30,16 +34,36 @@ request.setAttribute("listNevoi", listNevoie);%>
 
 <h1 style="color:rgba(0,0,0,0.6);position:relative;text-align:center;padding-top:30px;text-shadow: -2px 0px 11px rgba(61, 57, 78, 1);">Nevoiasi</h1>
 
-<a href="adminInterface.jsp" class="btn btn-success" style="margin-left: 217px;">Inapoi</a>
+<form action="adminInterfaceServlet" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" class="btn btn-success" style="border:none;margin-left: 217px;" >Inapoi</button>
+</form>
 
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Status: </button>
+  <button onclick="myFunction()" class="dropbtn" style="margin-left: 150px;">Status: </button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Cauta..." id="myInput" onkeyup="filterFunction()">
-    <a href="AdminNevoiasiValid.jsp" style="text-decoration: none;">Valid</a>
-    <a href="AdminNevoiasiLoading.jsp" style="text-decoration: none;">Loading</a>
-    <a href="AdminNevoiasiNevalid.jsp" style="text-decoration: none;">Nevalid</a>
-    <a href="UsersNevoie.jsp" style="text-decoration: none;">Totul</a>
+    <form action="adminNevValid" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit"  style="background: none;border:none;margin-left:30px;" >Valid</button>
+	</form>   
+    <form action="adminNevLoading" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" style="background: none;border:none;margin-left:30px;" >Loading</button>
+	</form>	
+	<form action="adminNevNevalid" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit"  style="background: none;border:none;margin-left:30px;" >Nevalid</button>
+	</form>
+	<form action="UsersNevoieServlet" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" style="background: none;border:none;margin-left:30px;" >Totul</button>
+	</form>
   </div>
 </div>
 
@@ -74,6 +98,8 @@ function filterFunction() {
 <div class="box">
 <div class="content">
 <form action="updateNevoie" method="post">
+<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
 
 <input type="hidden" class="form-control" name="Document" value="<%=nev.getDocument()%>">
 <input type="hidden" name="Id_UserNev" value="<%=nev.getId_UserNev()%>" />

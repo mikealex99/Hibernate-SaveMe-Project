@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="hibernate.model.User"%>
+<%@ page import="hibernate.model.Admin"%>
 <%@ page import="hibernate.model.Cufar"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
 <%HibernateDao u= new HibernateDao();%>
 
+<% String Utilizator=request.getParameter("Utilizator");
+Admin existingAdmin = u.selectProfilAdmin(Utilizator); %>
+
 <%List<User> listUser = u.selectAllUsers();
 request.setAttribute("listUsers", listUser);%>
-
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +33,13 @@ request.setAttribute("listUsers", listUser);%>
 </header>
 
 <h1 style="color:rgba(0,0,0,0.6);position:relative;text-align:center;padding-top:30px;text-shadow: -2px 0px 11px rgba(61, 57, 78, 1);">Useri "Vreau sa ajut"</h1>
-<a href="adminInterface.jsp" class="btn btn-success" style="margin-left: 217px;">Inapoi</a>			
+
+<form action="adminInterfaceServlet" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" class="btn btn-success" style="border:none;margin-left: 217px;" >Inapoi</button>
+</form>
+		
 <div class="container">
 <%for (User user: listUser) {   %>
 
@@ -38,6 +47,9 @@ request.setAttribute("listUsers", listUser);%>
 		<div class="box">
 			<div class="content">
 				<form action="updateUser" method="post">
+				    <input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 	<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		
 					<input type="hidden" class="inputID" name="Id_cufar" value="<%=user.getIdCufar()%>" />
 					<input type="text" class="inputID" name="Id_user" value="<%=user.getId()%>" />	
 					<input type="text" class="inputNume" name="Nume" value="<%=user.getNume()%>" />

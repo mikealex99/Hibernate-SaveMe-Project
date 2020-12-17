@@ -33,7 +33,7 @@
       <div class="btn">
         <input type="submit" value="Logheaza-te" class="btninreg">
       </div>
-      <div class="logare">Nu ai cont?<a href="home.html"> Inregistreaza-te!</a></div>   
+      <div class="logare">Nu ai cont?<a href="home.html" style="text-decoration: none;color:#308f84;"> Inregistreaza-te!</a></div>   
   </div>
  </div>      
 </form>

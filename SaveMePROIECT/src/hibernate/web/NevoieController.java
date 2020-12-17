@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.Part;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,12 +29,23 @@ import hibernate.model.Nevoie;
  * Servlet implementation class nevoieform
  */
 
-@MultipartConfig
+
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+maxFileSize = 1024 * 1024 * 10, // 10MB
+maxRequestSize = 1024 * 1024 * 50)
 
 @WebServlet("/nevoieform")
 public class NevoieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HibernateDao userDao;
+		
+	  /*
+    create images folder at, C:\Users\alexa\eclipse-workspace\git\Hibernate-SaveMe-Project\SaveMePROIECT\WebContent\Imagini
+    */
+
+   public static final String UPLOAD_DIR = "Imagini";
+   public String dbFileName = "";
+	
 
 	public void init() {
 		userDao = new HibernateDao();
@@ -66,7 +74,7 @@ public class NevoieController extends HttpServlet {
 		}
 	}
 
-	//Preluam valorile introduse de user si le inseram in DB
+	
 	private void insertNev(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		int id_usernev = Integer.parseInt(request.getParameter("Id_UserNev"));
 		Nevoie exNev=userDao.selectUserNevoie(id_usernev);
@@ -94,13 +102,31 @@ public class NevoieController extends HttpServlet {
         //obtinem anul curent
 		DateTimeFormatter anul = DateTimeFormatter.ofPattern("yyyy");
         
-		//preluam fisierul ales de user
-		Part filePartDoc = request.getPart("Document");		
-		//InputStream pentru a stoca fisierul
-	    InputStream fileInputStream = filePartDoc.getInputStream();
-	    File fileToSave = new File("C:\\Users\\alexa\\eclipse-workspace\\SaveMePROIECT\\WebContent\\Imagini",filePartDoc.getSubmittedFileName());
-		Files.copy(fileInputStream, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);	
-		String fileUrl =""+ filePartDoc.getSubmittedFileName();
+		//get the file chosen by the user
+		Part part = request.getPart("Document");
+							
+		String fileName = extractFileName(part);//file name
+		
+		 String applicationPath = getServletContext().getRealPath("");
+	     String uploadPath = applicationPath + File.separator + UPLOAD_DIR;
+	     System.out.println("applicationPath:" + applicationPath);
+	     File fileUploadDirectory = new File(uploadPath);
+	     
+	     if (!fileUploadDirectory.exists()) {
+	            fileUploadDirectory.mkdirs();
+	        }
+	     
+	     System.out.println("Filename: "  + fileName);
+	     String savePath = "C:\\Users\\alexa\\git\\Hibernate-SaveMe-Project\\SaveMePROIECT\\WebContent\\Imagini" + File.separator + fileName;
+	     System.out.println("savePath: " + savePath);
+	     String sRootPath = new File(savePath).getAbsolutePath();
+	     System.out.println("sRootPath: " + sRootPath);
+	     
+	     
+	     /*if you may have more than one files with same name then you can calculate some random characters
+         and append that characters in fileName so that it will  make your each image name identical.*/
+
+        part.write(savePath + File.separator);
 		
         Nevoie nevoie = new Nevoie();
 
@@ -118,7 +144,8 @@ public class NevoieController extends HttpServlet {
         nevoie.setLuna(luna.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH ));
         nevoie.setZiua(date.format(ziua));
         nevoie.setAnul(date.format(anul));
-        nevoie.setDocument(fileUrl);
+        nevoie.setDocument(fileName);
+        
 		nevoie.setId(Id);
 		nevoie.setId_UserNev(exNev.getId_UserNev());
         
@@ -128,7 +155,18 @@ public class NevoieController extends HttpServlet {
 		System.out.println("updateComplete .......................................... ID_USERNEV: "+exNev.getId_UserNev());
         RequestDispatcher dispatcher = request.getRequestDispatcher("FormularStatus.jsp");
         dispatcher.forward(request, response);
-   }
+    	    }
+	
+	private String extractFileName(Part part) {//This method will print the file name.
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
+    }
 }
 
 

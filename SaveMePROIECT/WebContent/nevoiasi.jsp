@@ -42,17 +42,46 @@ Cufar existingCufar = u.selectCufar(id_cufar);
 	<nav>
 		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
 		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="nevoiasiServlet?Id_cufar=<%=existingCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Nevoiasi</a></li>				
-			<li><a href="addGift?Id_cufar=<%=existingCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Adauga gift</a></li>		
-			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
-            	<ul class="dropdown">
-				 <li><a href="CufarulMagic?Id_cufar=<%=existingCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit gift</a></li>            	 
-               	 <li><a href="editProfil?Id_cufar=<%=existingCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit profil</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Logout</a></li>
-            	</ul>	         		
-			</li>	
+			<li><form action="home.html" method="get">
+               	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
+               	</form>
+            </li>
+			<li><form action="admin.jsp" method="get">
+               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
+               	</form>
+            </li>			
+			<li><form action="nevoiasiServlet" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Nevoiasi</button>
+               	</form>
+            </li>
+            <li><form action="addGift" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Adauga gift</button>
+               	</form>
+            </li>		
+		  <li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
+          <ul class="dropdown">
+			<li><form action="CufarulMagic" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit gift</button>
+               	</form>
+            </li>
+            <li><form action="editProfil" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit profil</button>
+               	</form>
+            </li>					 
+            <li><form action="logout.jsp" method="get">
+               	 		<button type="submit" formaction="logout.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Delogare</button>               	 		
+               	</form>
+           </li>
+           </ul>	         		
+		   </li>	
 		</ul>
 	</nav>
 </header>
@@ -131,17 +160,46 @@ Cufar existingCufar = u.selectCufar(id_cufar);
 	<nav>
 		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
 		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="nevoiasiServlet?Id_cufar=<%=existingUser.getIdCufar()%>" style="text-decoration:none;color:white;">Nevoiasi</a></li>				
-			<li><a href="addGift?Id_cufar=<%=existingUser.getIdCufar()%>" style="text-decoration:none;color:white;">Adauga gift</a></li>		
-			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
-            	<ul class="dropdown">
-				 <li><a href="CufarulMagic?Id_cufar=<%=existingUser.getIdCufar()%>" style="text-decoration:none;color:white;">Edit gift</a></li>            	 
-               	 <li><a href="editProfil?Id_cufar=<%=existingUser.getIdCufar()%>" style="text-decoration:none;color:white;">Edit profil</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Logout</a></li>
-            	</ul>	         		
-			</li>	
+			<li><form action="home.html" method="get">
+               	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
+               	</form>
+            </li>
+			<li><form action="admin.jsp" method="get">
+               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
+               	</form>
+            </li>			
+			<li><form action="nevoiasiServlet" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Nevoiasi</button>
+               	</form>
+            </li>
+            <li><form action="addGift" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Adauga gift</button>
+               	</form>
+            </li>		
+		  <li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
+          <ul class="dropdown">
+			<li><form action="CufarulMagic" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit gift</button>
+               	</form>
+            </li>
+            <li><form action="editProfil" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit profil</button>
+               	</form>
+            </li>					 
+            <li><form action="logout.jsp" method="get">
+               	 		<button type="submit" formaction="logout.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Delogare</button>               	 		
+               	</form>
+           </li>
+           </ul>	         		
+		   </li>	
 		</ul>
 	</nav>
 </header>

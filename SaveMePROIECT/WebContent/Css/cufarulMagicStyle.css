@@ -39,17 +39,15 @@ header nav ul li:hover{
 	background-color: #fda500;
 }
 
- header nav ul li a{
+ header nav ul li {
 	text-decoration:none;
 	color: #fff;
-	padding:20px;
+	padding-left:20px;
+	padding-right:20px;
 	font-size:20px;
 	font-weight:bold; 
 }
 
-header nav ul li a:hover{
-	font-style:italic; 
-}
 
 ul li ul.dropdown{
          /* Set width of the dropdown */
@@ -107,14 +105,6 @@ ul li ul.dropdown li{
   background: #eeeeee;
 }
 
-
-
-
-
-
-
-
-
 .blog{
 	position:relative;
 	height:514px;
@@ -158,7 +148,7 @@ input[type="text"]:focus
 
 .blog .inputText{
 	width:800px;
-	height:200px;
+	height:55px;
 	border: none;
 	font-size:20px;
 	margin-left:5px;

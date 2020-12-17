@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List"%>
+<%@ page import="hibernate.model.Admin"%>
 <%@ page import="hibernate.model.Cufar"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
 <%HibernateDao u= new HibernateDao();%>
+
+<% String Utilizator=request.getParameter("Utilizator");
+Admin existingAdmin = u.selectProfilAdmin(Utilizator); %>
 
 <%List<Cufar> listCufar= u.selectAllCufarNev();
 request.setAttribute("listUsers2", listCufar);%>
@@ -29,7 +33,12 @@ request.setAttribute("listUsers2", listCufar);%>
 </header>
 
 <h1 style="color:rgba(0,0,0,0.6);position:relative;text-align:center;padding-top:30px;text-shadow: -2px 0px 11px rgba(61, 57, 78, 1);">Lista gift-uri</h1>
-<a href="adminInterface.jsp" class="btn btn-success" style="margin-left: 217px;">Inapoi</a>
+<form action="adminInterfaceServlet" method=post>
+               	     	<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 		<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+               	 		<button type="submit" class="btn btn-success" style="border:none;margin-left: 217px;" >Inapoi</button>
+</form>
+
 <div class="container">
 <%for (Cufar users: listCufar) {   %>
 
@@ -41,6 +50,10 @@ if(test != null && !test.equals("null")){%>
 		<div class="box">
 			<div class="content">
 				<form action="updateCufar" method="post">
+					<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
+               	 	<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
+				
+				
 					<input type="hidden" class="inputID" name="Data" value="<%=users.getData()%>" />
 					<input type="hidden" class="inputID" name="Id_cufar" value="<%=users.getIdCufar()%>" />
 					<input type="text" class="inputID" name="Id" value="<%=users.getId()%>" />

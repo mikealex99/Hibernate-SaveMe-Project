@@ -2,11 +2,12 @@
 <%@ page import="hibernate.model.User2"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
-<% HibernateDao u= new HibernateDao();%>
+<% HibernateDao u= new HibernateDao();   
 
-<% int id_usernev = Integer.parseInt(request.getParameter("Id_UserNev"));
-   User2 existingUser2 = u.selectUserProfil2(id_usernev);%>
-								  								  
+int id_usernev = Integer.parseInt(request.getParameter("Id_UserNev"));
+User2 existingUser2 = u.selectUserProfil2(id_usernev); 
+%> 
+					  								  
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,23 +19,56 @@
 </head>
 <body>
 
+<%
+String Email=existingUser2.getEmail();
+if(Email == null) {%>
+
+<jsp:forward page="home.html" />
+
+<%}else if(Email != null){ %>
+
 <header>
 	<nav>
-		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
+		<img src="Imagini/logo.jpg" width="200px" height="50px" style="margin-top:15px;margin-left:15px;">
 		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="CufRedirect?Id_UserNev=<%=existingUser2.getId_UserNev()%>" style="text-decoration:none;color:white;">Cufarul magic</a></li>
+			<li><form action="home.html" method="get">
+               	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:13px;" >Home</button>               	 		
+               	</form>
+            </li>
+			<li><form action="admin.jsp" method="get">
+               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:13px;" >Admin</button>               	 		
+               	</form>
+            </li>
+            <li><form action="CufRedirect" method=post>
+               	     	<input type="hidden" class="input" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:13px;" >Cufarul Magic</button>
+               	</form>
+            </li>
 			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
             	<ul class="dropdown">
-            	 <li><a href="checkFormular?Id_UserNev=<%=existingUser2.getId_UserNev()%>" style="text-decoration:none;color:white;">Formular</a></li>          
-               	 <li><a href="editProfil2?Id_UserNev=<%=existingUser2.getId_UserNev()%>" style="text-decoration:none;color:white;">Editeaza profil</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Delogheaza-te</a></li>
+               	 <li><form action="checkFormular" method=post>
+               	     	<input type="hidden" class="input" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Formular</button>
+               	 	</form>
+               	 </li>              	 
+               	 <li><form action="editProfil2" method=post>
+               	     	<input type="hidden" class="input" placeholder="Id_UserNev" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Editeaza profil</button>
+               	 	</form>
+               	 </li>
+               	 <li><form action="logout.jsp" method="get">
+               	 		<button type="submit" formaction="logout.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Delogare</button>               	 		
+               	 	</form>
+               	 </li>
             	</ul>	         		
 			</li>	
-		</ul>
+		</ul>	
 	</nav>
 </header>
+
 
 <form action="updateProfil2Servlet" method="post">								
 <div class="wrapper">
@@ -69,11 +103,12 @@
 				</fieldset>	
 											
 				<button type="submit" class="btn btn-success" onclick="return confirm('Doriti sa modificati informatiile?')">Salveaza</button>
-    			<button type="submit" formaction="deleteUser2page" class="btn btn-danger" style="margin-left:146px;" onclick="return confirm('Esti sigur ca doresti sa stergi acest cont?')">Sterge contul</button>
+    			<button type="submit" formaction="deleteUser2page" class="btn btn-danger" style="margin-left:146px;" onclick="return confirm('Sunteti sigur ca doriti sa stergeti acest cont?')">Sterge contul</button>
     
   </div>
  </div>    
 </form>
 
+<%} %>
 </body>
 </html>

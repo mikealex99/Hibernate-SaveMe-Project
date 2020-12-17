@@ -53,7 +53,7 @@
       <div class="btn">
       <input type="submit" value="Inregistreaza-te" class="btninreg">
       </div>
-      <div class="logare">Ai deja un cont?<a href="logarenevoi.jsp"> Logheaza-te!</a></div> 
+      <div class="logare">Ai deja un cont?<a href="logarenevoi.jsp" style="text-decoration: none;color:#308f84;"> Logheaza-te!</a></div> 
   </div>
 </div>
 </form>

@@ -45,14 +45,13 @@ public class LogAdminController extends HttpServlet {
         String Utilizator = request.getParameter("Utilizator");
         String Parola = request.getParameter("Parola");
    
-
         if (userDao.validateAdmin(Utilizator, Parola)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("adminInterface.jsp");
             dispatcher.forward(request, response);
-        } else {
-        	
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+        } else {        	
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminError.jsp");
             dispatcher.forward(request, response);
         }
+        
     }
 }

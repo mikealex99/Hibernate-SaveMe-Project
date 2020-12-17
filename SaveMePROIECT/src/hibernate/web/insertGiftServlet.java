@@ -51,14 +51,21 @@ public class insertGiftServlet extends HttpServlet {
 
 	//Redirectionare catre pagina 'adaugaGift.jsp'
 	private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		String Email=request.getParameter("Email");
 		
-		int Id_cufar = Integer.parseInt(request.getParameter("Id_cufar"));
-		
-		User existingUser = userDao.selectUser(Id_cufar);
+		if(Email==null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+			dispatcher.forward(request, response);
+		}else {
+		int id_cufar = Integer.parseInt(request.getParameter("Id_cufar"));
+		User existingUser = userDao.selectUser(id_cufar);
+        
+        System.out.println("User: "+id_cufar);
+        System.out.println("Email: "+Email);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adaugaGift.jsp");
-		request.setAttribute("cufar", existingUser);
+		request.setAttribute("user", existingUser);
 		dispatcher.forward(request, response);
 	}
-
+	}
 }

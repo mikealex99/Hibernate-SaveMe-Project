@@ -49,6 +49,12 @@ public class updateUser2Controller extends HttpServlet {
 
 	//Preluam valorile introduse de user si le adaugam in DB
 	private void updateUser2(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		int id = Integer.parseInt(request.getParameter("ID"));
+        String Utilizator = request.getParameter("Utilizator");
+        
+        System.out.println("Id: "+id);
+        System.out.println("Utilizator: "+Utilizator);
+		
 		int id_user = Integer.parseInt(request.getParameter("Id_user"));
 		int id_usernev = Integer.parseInt(request.getParameter("Id_UserNev"));
         String Email = request.getParameter("Email");

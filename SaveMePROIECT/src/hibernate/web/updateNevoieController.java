@@ -49,6 +49,12 @@ public class updateNevoieController extends HttpServlet {
 
 	//Preluam valorile introduse de user si le introducem in DB
 	private void updateNevoie(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		int ID = Integer.parseInt(request.getParameter("ID"));
+        String Utilizator = request.getParameter("Utilizator");
+        
+        System.out.println("Id: "+ID);
+        System.out.println("Utilizator: "+Utilizator);
+		
 		int id = Integer.parseInt(request.getParameter("Id"));
 		int id_USERNEV = Integer.parseInt(request.getParameter("Id_UserNev"));
 	 	String Bani = request.getParameter("Bani");

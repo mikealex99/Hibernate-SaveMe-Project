@@ -1,5 +1,4 @@
 package hibernate.web;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -40,19 +39,18 @@ public class Log2Controller extends HttpServlet {
     }
 
     //Daca emailul si parola corespund cu cele din DB atunci se realizeaza logarea
-    private void authenticate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception {
+    private void authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String Email = request.getParameter("Email");
         String Parola = request.getParameter("Parola");
-   
-
-        if (userDao.validare(Email, Parola)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("nevoieform.jsp");
-            dispatcher.forward(request, response);
-        } else {
+       
         	
-            RequestDispatcher dispatcher = request.getRequestDispatcher("errorLogin2.jsp");
-            dispatcher.forward(request, response);
-        }
+            if (userDao.validare(Email, Parola)) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("nevoieform.jsp");
+                dispatcher.forward(request, response);
+            } else {         	
+                RequestDispatcher dispatcher = request.getRequestDispatcher("errorLogin2.jsp");
+                dispatcher.forward(request, response);           
+            }
+            
     }
 }

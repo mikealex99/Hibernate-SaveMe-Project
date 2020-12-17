@@ -16,7 +16,7 @@ public class Admin implements Serializable{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="Id")
+    @Column(name="ID")
     private int Id;
 	
 	@Column(name = "Utilizator")

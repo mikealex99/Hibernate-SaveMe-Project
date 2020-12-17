@@ -463,6 +463,29 @@ public User2 selectUserProfil2(int id_usernev) {
 		return user;
  }
 
+public Admin selectUserProfilId(int id) {
+	
+	Transaction transaction = null;
+	Admin user = null;
+	
+	try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		// start a transaction
+		transaction = session.beginTransaction();
+		// get an user object
+		user = (Admin) session.createQuery("FROM Admin U WHERE U.ID = :ID").setParameter("ID", id)
+                .uniqueResult();
+		// commit transaction
+		transaction.commit();
+	} catch (Exception e) {
+		if (transaction != null) {
+			transaction.rollback();
+		}
+		e.printStackTrace();
+	}
+	return user;
+}
+
+
 public User selectProfil(String Email) {
 	
 		Transaction transaction = null;
@@ -485,6 +508,28 @@ public User selectProfil(String Email) {
 		return user;
  }
 	
+public Admin selectProfilAdmin(String Utilizator) {
+	
+	Transaction transaction = null;
+	Admin user = null;
+	
+	try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		// start a transaction
+		transaction = session.beginTransaction();
+		// get an user object
+		user = (Admin) session.createQuery("FROM Admin U WHERE U.Utilizator = :Utilizator").setParameter("Utilizator", Utilizator)
+                .uniqueResult();			
+		// commit transaction
+		transaction.commit();
+	} catch (Exception e) {
+		if (transaction != null) {
+			transaction.rollback();
+		}
+		e.printStackTrace();
+	}
+	return user;
+}
+
 public User2 selectProfil2(String Email) {
 	
 		Transaction transaction = null;

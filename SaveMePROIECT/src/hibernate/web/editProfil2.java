@@ -52,12 +52,21 @@ public class editProfil2 extends HttpServlet {
 	//Redirectionare catre 'EditProfile2.jsp'
 	private void editUser2(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 		
-		int id_user = Integer.parseInt(request.getParameter("Id_UserNev"));
+		String Email=request.getParameter("Email");
 		
-		User2 existingUser2 = userDao.selectUser2(id_user);
+		if(Email==null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+			dispatcher.forward(request, response);
+		}else {
+		int id_user = Integer.parseInt(request.getParameter("Id_UserNev"));
+		User2 existingUser2 = userDao.selectUserProfil2(id_user);
+        
+        System.out.println("User: "+id_user);
+        System.out.println("Email: "+Email);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("EditProfile2.jsp");
-		request.setAttribute("user", existingUser2);
+		request.setAttribute("user2", existingUser2);		
 		dispatcher.forward(request, response);
+		}
 	}
 }

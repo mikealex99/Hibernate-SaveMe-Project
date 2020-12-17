@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hibernate.dao.HibernateDao;
-import hibernate.model.Nevoie;
+import hibernate.model.User2;
 
 
 /**
@@ -54,11 +54,21 @@ public class redirectUpdateNev extends HttpServlet {
 	//Redirectionare catre 'editNevoie.jsp'
 	private void editUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
+		String Email=request.getParameter("Email");
+		
+		if(Email==null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+			dispatcher.forward(request, response);
+		}else {
 		int id_user = Integer.parseInt(request.getParameter("Id_UserNev"));
-		Nevoie existingNevoie = userDao.selectUserNevoie(id_user);
+		User2 existingUserProfil2 = userDao.selectUserProfil2(id_user);              
+		
+        System.out.println("User: "+id_user);
+        System.out.println("Email: "+Email);
+        
 		RequestDispatcher dispatcher = request.getRequestDispatcher("editNevoie.jsp");
-		request.setAttribute("user", existingNevoie);
+		request.setAttribute("user2", existingUserProfil2);
 		dispatcher.forward(request, response);
 	}
-
+  }
 }

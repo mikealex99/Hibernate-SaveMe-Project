@@ -5,11 +5,9 @@
 
 <% HibernateDao u= new HibernateDao();%>
 
-<% 
-int id_cufar = Integer.parseInt(request.getParameter("Id_cufar"));
-User existingCufar = u.selectUser(id_cufar);
-request.setAttribute("cufar", existingCufar);
-%>
+<% int id_cufar = Integer.parseInt(request.getParameter("Id_cufar"));
+   Cufar exCufar=u.selectCufar(id_cufar);
+   User existingUser = u.selectUserProfil(id_cufar);%>
   
 <!DOCTYPE html>
 <html>
@@ -22,31 +20,58 @@ request.setAttribute("cufar", existingCufar);
 </head>
 <body>
 
-<% 
-Cufar exCufar=u.selectCufar(id_cufar);
-String titlu=exCufar.getTitlu();
-
-if(titlu == null){
-%>
-
 <header>
 	<nav>
 		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
 		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="addGift?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Adauga gift</a></li>		
-			<li><a href="nevoiasiServlet?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Nevoiasi</a></li>				
-			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
-            	<ul class="dropdown">  
-				 <li><a href="CufarulMagic?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit gift</a></li>            	            
-               	 <li><a href="editProfil?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Logout</a></li>
-            	</ul>	         		
-			</li>	
+			<li><form action="home.html" method="get">
+               	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
+               	</form>
+            </li>
+			<li><form action="admin.jsp" method="get">
+               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
+               	</form>
+            </li>			
+			<li><form action="nevoiasiServlet" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Nevoiasi</button>
+               	</form>
+            </li>
+            <li><form action="addGift" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Adauga gift</button>
+               	</form>
+            </li>		
+		  <li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
+          <ul class="dropdown">
+			<li><form action="CufarulMagic" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit gift</button>
+               	</form>
+            </li>
+            <li><form action="editProfil" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Edit profil</button>
+               	</form>
+            </li>					 
+            <li><form action="logout.jsp" method="get">
+               	 		<button type="submit" formaction="logout.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Delogare</button>               	 		
+               	</form>
+           </li>
+           </ul>	         		
+		   </li>	
 		</ul>
 	</nav>
 </header>
+
+<% 
+String titlu=exCufar.getTitlu();
+
+if(titlu == null){ %>
 
 <h1 style="text-align:center;color:red;margin-top:37px;border: 0px solid black;  text-shadow: 1px 1px #fff;"><i class="fa fa-exclamation" aria-hidden="true"> </i> Poti adauga maxim un gift <i class="fa fa-exclamation" aria-hidden="true"></i></h1>
 <form action="<%=request.getContextPath()%>/insertGift?Id_cufar=<%=exCufar.getIdCufar()%>" method="post">
@@ -78,25 +103,6 @@ if(titlu == null){
 
 <%} else if(titlu.equals("null")) {%>	
 
-<header>
-	<nav>
-		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
-		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="addGift?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Adauga gift</a></li>		
-			<li><a href="nevoiasiServlet?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Nevoiasi</a></li>				
-			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
-            	<ul class="dropdown">
-				 <li><a href="CufarulMagic?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit gift</a></li>            	            
-               	 <li><a href="editProfil?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Logout</a></li>
-            	</ul>	         		
-			</li>	
-		</ul>
-	</nav>
-</header>
-
 <h1 style="text-align:center;color:red;margin-top:37px;border: 0px solid black;  text-shadow: 1px 1px #fff;"><i class="fa fa-exclamation" aria-hidden="true"> </i> Poti adauga maxim un gift <i class="fa fa-exclamation" aria-hidden="true"></i></h1>
 <form action="<%=request.getContextPath()%>/insertGift?Id_cufar=<%=exCufar.getIdCufar()%>" method="post">
 <div class="wrapper">
@@ -127,32 +133,17 @@ if(titlu == null){
 		
 <%} else if(titlu !=null){ %>
 
-<header>
-	<nav>
-		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
-		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="addGift?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Adauga gift</a></li>		
-			<li><a href="nevoiasiServlet?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Nevoiasi</a></li>				
-			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
-            	<ul class="dropdown">
-				 <li><a href="CufarulMagic?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit gift</a></li>            	            
-               	 <li><a href="editProfil?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Edit</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Logout</a></li>
-            	</ul>	         		
-			</li>	
-		</ul>
-	</nav>
-</header>
-
 <div class="wrapper">
   <div class="title">
     <h3>Ai adaugat deja un gift!</h3><br><h4 style="text-align:center;color:red;border: 0px solid black;  text-shadow: 1px 1px #fff;"><i class="fa fa-exclamation" aria-hidden="true"> </i> Poti adauga maxim un gift<i class="fa fa-exclamation" aria-hidden="true"> </i></h4>
   </div>
   <div class="btn">
   	<div class="btnnev">
-    	<A HREF="CufarulMagic?Id_cufar=<%=exCufar.getIdCufar()%>" style="text-decoration:none;color:white;">Vezi gift-ul tau</A>
+    	<form action="CufarulMagic" method=post>
+               	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Vezi gift-ul tau</button>
+        </form>      
     </div>
   </div>  
 </div>

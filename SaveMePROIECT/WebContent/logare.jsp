@@ -13,7 +13,6 @@
 <header>
 	<nav>
 		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:15px;margin-left:15px;">
-		<ul><li><a href="despre.html">Despre noi</a></li></ul>
 		<ul><li><a href="admin.jsp">Admin</a></li></ul>
 		<ul><li><a href="home.html">Home</a></li></ul>
 	</nav>
@@ -34,7 +33,7 @@
    	  <div class="btn">
       <input type="submit" value="Logheaza-te" class="btninreg">
       </div>    
-      <div class="logare">Nu ai cont?<a href="home.html"> Inregistreaza-te!</a></div>    
+      <div class="logare">Nu ai cont?<a href="home.html" style="text-decoration: none;color:#308f84;"> Inregistreaza-te!</a></div>    
   </div>
  </div>      
 </form>

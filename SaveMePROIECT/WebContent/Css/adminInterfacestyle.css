@@ -205,7 +205,7 @@ button .btnsave:hover{
 .userlink{
 	
 margin-left:316px;
-display:flex;
+display:block;
 border-radius:10px;
 text-decoration:none;
 font-size:73px;
@@ -216,6 +216,5 @@ text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, -6px -8px 1
 
 .userlink:hover{
 	text-decoration:none;
-	font-style:italic;
 	color: #05aada;
 }

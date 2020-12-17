@@ -1,8 +1,6 @@
 package hibernate.web;
 
 import java.io.IOException;
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import hibernate.dao.HibernateDao;
-
-
-
-
-
 
 /**
  * Servlet implementation class LogController
@@ -47,29 +40,22 @@ public class LogController extends HttpServlet {
     }
 
     //Daca emailul si parola corespund cu cele din DB atunci se realizeaza logarea
-    private void authenticate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception {
+    private void authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String Email = request.getParameter("Email");
         String Parola = request.getParameter("Parola");
-  
-
+      
+        // Daca email-ul si parola sunt corecte logarea se realizeaza cu succes; 
+        // se deschide pagina 'nevoiasi.jsp'
         
-        
-        // Daca Email-ul si Parola sunt corecte se deschide pagina 'nevoiasi.jsp'
-        if (userDao.validate(Email, Parola)) {
-        	
-        	HttpSession session = request.getSession();
-        	session.setAttribute("Email", Email);
-        
-        	
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("nevoiasi.jsp");
-            dispatcher.forward(request, response);
-        } else {
-        	
-            RequestDispatcher dispatcher = request.getRequestDispatcher("errorLogin.jsp");
-            dispatcher.forward(request, response);
-        }
-        
- 
+            if (userDao.validate(Email, Parola)) {	
+            	HttpSession session = request.getSession();
+            	session.setAttribute("user", Email);
+            	
+            	RequestDispatcher dispatcher = request.getRequestDispatcher("nevoiasi.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("errorLogin.jsp");
+                dispatcher.forward(request, response);
+            }	
     }
 }

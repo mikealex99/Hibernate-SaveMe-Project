@@ -50,10 +50,6 @@ header nav ul li:hover{
 	font-weight:bold; 
 }
 
-header nav ul li a:hover{
-	font-style:italic; 
-}
-
 ul li ul.dropdown{
          /* Set width of the dropdown */
         background: #acacac;
