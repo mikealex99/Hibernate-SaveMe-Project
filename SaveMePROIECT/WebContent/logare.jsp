@@ -32,7 +32,8 @@
       </div>
    	  <div class="btn">
       <input type="submit" value="Logheaza-te" class="btninreg">
-      </div>    
+      </div>
+      <div class="logare">Ai uitat parola?<a href="forgotpass.jsp" style="text-decoration: none;color:#308f84;"> Click aici!</a></div><br>        
       <div class="logare">Nu ai cont?<a href="home.html" style="text-decoration: none;color:#308f84;"> Inregistreaza-te!</a></div>    
   </div>
  </div>      

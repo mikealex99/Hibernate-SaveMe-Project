@@ -41,6 +41,12 @@ public class User2 implements Serializable {
     @Column(name = "Telefon")
     private String Telefon;
     
+    @Column(name = "Code")
+    private String Code;
+    
+    @Column(name = "Verificat")
+    private String Verificat;
+    
     
 	public int getId() {
 		return Id_user;
@@ -90,5 +96,18 @@ public class User2 implements Serializable {
 	public void setId_UserNev(int Id_UserNev) {
 		this.Id_UserNev = Id_UserNev;
 	}
+    public String getCode() {
+        return Code;
+    }
+    public void setCode(String Code) {
+        this.Code = Code;
+    }
+    
+    public String getVerificat() {
+        return Verificat;
+    }
+    public void setVerificat(String Verificat) {
+        this.Verificat = Verificat;
+    }
 	
 }

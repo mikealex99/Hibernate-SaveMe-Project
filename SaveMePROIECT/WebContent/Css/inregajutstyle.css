@@ -121,8 +121,7 @@ label i:hover{
   width: 100%;
 }
 .wrapper .form .btninreg:hover{
-  color: #e0e0e0;
-  font-style:italic;  
+  background: #2e897d;
 }
 
 .wrapper .form .logare{
@@ -130,7 +129,8 @@ label i:hover{
 	margin-top:10px;
 }
 .wrapper .form .logare a:hover{
-font-style:italic; 
+  color: #e0e0e0;
+  font-style:italic;
 }
 
 

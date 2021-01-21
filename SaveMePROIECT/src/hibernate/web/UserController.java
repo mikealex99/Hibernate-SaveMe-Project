@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import hibernate.dao.HibernateDao;
+import hibernate.dao.SendEmail;
 import hibernate.model.Cufar;
 import hibernate.model.User;
 
@@ -50,9 +52,16 @@ public class UserController extends HttpServlet {
     String Prenume = request.getParameter("Prenume");
     String Adresa= request.getParameter("Adresa");
     String Telefon= request.getParameter("Telefon");
-    	        
+    String Verificat="Nu";
+    
+	//create instance object of the SendEmail Class
+    SendEmail sm = new SendEmail();
+		//get the 6-digit code
+    String Code = sm.getRandom();
+    System.out.println("Code: "+Code);
+    
     User user = new User();
-
+    
     user.setEmail(Email);
     user.setParola(Parola);
     user.setNume(Nume);
@@ -60,7 +69,9 @@ public class UserController extends HttpServlet {
     user.setAdresa(Adresa);
     user.setTelefon(Telefon);
     user.setIdCufar(Id_cufar);
-    	        
+    user.setCode(Code);
+    user.setVerificat(Verificat);
+    
     userDao.saveUser(user);
   	     
     //inseram in 'Cufar' acelasi ID_cufar din 'Users vreau sa ajut'
@@ -68,8 +79,23 @@ public class UserController extends HttpServlet {
     cufar.setIdCufar(Id_cufar);   	        
     userDao.saveCufar(cufar);
     	        
-    RequestDispatcher dispatcher = request.getRequestDispatcher("logare.jsp");
-    dispatcher.forward(request, response);
+    
+  //call the send email method
+    boolean test = sm.sendEmail(user);
+    
+  //check if the email send successfully
+    if(test){
+        HttpSession session  = request.getSession();
+        session.setAttribute("authcode", user);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("verify.jsp");
+        dispatcher.forward(request, response);
+    }else{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+        dispatcher.forward(request, response);
+	   }
+    
+
    }
 }
 

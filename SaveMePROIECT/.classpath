@@ -76,5 +76,6 @@
 	<classpathentry kind="lib" path="D:/Facultate/Backup/24.10.2020/WebContent/WEB-INF/lib/txw2-2.3.1.jar"/>
 	<classpathentry kind="lib" path="D:/Facultate/Backup/24.10.2020/WebContent/WEB-INF/lib/vibur-dbcp-25.0.jar"/>
 	<classpathentry kind="lib" path="D:/Facultate/Backup/24.10.2020/WebContent/WEB-INF/lib/vibur-object-pool-25.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

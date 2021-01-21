@@ -76,10 +76,23 @@ if(Email == null) {%>
   <div class="form">
 
 	<input type="hidden" name="Id_user" value="<%=existingUser2.getId()%>" />
+	<input type="hidden" name="Code" value="<%=existingUser2.getCode()%>" />
+	<input type="hidden" name="Verificat" value="<%=existingUser2.getVerificat()%>" />
 	<input type="hidden" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>" />
 				<fieldset class="form-group">
 					<label>Parola</label>
-					<input type="text" value="<%= existingUser2.getParola()%>" class="form-control" name="Parola" required="required" >
+					<input type="password" value="<%= existingUser2.getParola()%>" id="myInput" class="form-control" name="Parola" required="required"><br>
+					<input type="checkbox" onclick="myFunction()"> Arata parola
+						<script>
+							function myFunction() {
+						  		var x = document.getElementById("myInput");
+						  		if (x.type === "password") {
+						    		x.type = "text";
+						 			 } else {
+						    		x.type = "password";
+						  			}
+								}
+					</script>
 				</fieldset>
 
 				<fieldset class="form-group">

@@ -105,8 +105,8 @@ header nav ul li a:hover{
 }
 
 .wrapper .form .btninreg:hover{
-  color: #e0e0e0;
-  font-style:italic;  
+  background: #2e897d;
+
 }
 
 .wrapper .form .logare{

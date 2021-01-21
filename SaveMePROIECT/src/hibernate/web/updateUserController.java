@@ -63,6 +63,8 @@ public class updateUserController extends HttpServlet {
         String Prenume = request.getParameter("Prenume");
         String Adresa= request.getParameter("Adresa");
         String Telefon= request.getParameter("Telefon");
+        String Verificat = request.getParameter("Verificat");
+        String Code= request.getParameter("Code");
         
         User userupdate = new User();
         
@@ -74,6 +76,8 @@ public class updateUserController extends HttpServlet {
         userupdate.setPrenume(Prenume);
         userupdate.setAdresa(Adresa);
         userupdate.setTelefon(Telefon);
+        userupdate.setVerificat(Verificat);
+        userupdate.setCode(Code);
 
 		userDao.updateUser(userupdate);
 

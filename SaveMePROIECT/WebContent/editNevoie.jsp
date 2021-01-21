@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="hibernate.model.Nevoie"%>
+<%@ page import="hibernate.model.User2"%>
 <%@ page import="hibernate.dao.HibernateDao"%>
 
 <% HibernateDao u= new HibernateDao();%>
 
 <% int id_usernev = Integer.parseInt(request.getParameter("Id_UserNev"));
-   Nevoie exNevoie = u.selectUserNevoie(id_usernev);%>
+   Nevoie exNevoie = u.selectUserNevoie(id_usernev);
+   User2 existingUser2 = u.selectUserProfil2(id_usernev);%>
 								  								  
 <!DOCTYPE html>
 <html>
@@ -22,17 +24,39 @@
 	<nav>
 		<img src="Imagini/logo.jpg" width="200" height="50" style="margin-top:1px;margin-left:15px;">
 		<ul>
-			<li><a href="home.html" style="text-decoration:none;color:white;">Home</a></li>
-			<li><a href="admin.jsp" style="text-decoration:none;color:white;">Admin</a></li>
-			<li><a href="CufRedirect?Id_UserNev=<%=exNevoie.getId_UserNev()%>" style="text-decoration:none;color:white;">Cufarul magic</a></li>
+			<li><form action="home.html" method="get">
+               	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
+               	</form>
+            </li>
+			<li><form action="admin.jsp" method="get">
+               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
+               	</form>
+            </li>
+            <li><form action="CufRedirect" method=post>
+               	     	<input type="hidden" class="input" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Cufarul Magic</button>
+               	</form>
+            </li>
 			<li><a href="#" style="text-decoration:none;color:white;">Profilul meu</a>			
             	<ul class="dropdown">
-            	 <li><a href="checkFormular?Id_UserNev=<%=exNevoie.getId_UserNev()%>" style="text-decoration:none;color:white;">Formular</a></li>          
-               	 <li><a href="editProfil2?Id_UserNev=<%=exNevoie.getId_UserNev()%>" style="text-decoration:none;color:white;">Editeaza profil</a></li>
-               	 <li><a href="logout.jsp" style="text-decoration:none;color:white;">Delogheaza-te</a></li>
-            	</ul>	         		
-			</li>	
-		</ul>
+               	 <li><form action="checkFormular" method=post>
+               	     	<input type="hidden" class="input" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:13px;" >Formular</button>
+               	 	</form>
+               	 </li>              	 
+               	 <li><form action="editProfil2" method=post>
+               	     	<input type="hidden" class="input" placeholder="Id_UserNev" name="Id_UserNev" value="<%=existingUser2.getId_UserNev()%>">
+               	 		<input type="hidden" class="input"  name="Email" value="<%=existingUser2.getEmail()%>">
+               	 		<button type="submit" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Editeaza profil</button>
+               	 	</form>
+               	 </li>
+               	 <li><form action="logout.jsp" method="get">
+               	 		<button type="submit" formaction="logout.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Delogare</button>               	 		
+               	 	</form>
+               	 </li>
+            	</ul>	        
 	</nav>
 </header>
 

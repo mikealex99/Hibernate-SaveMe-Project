@@ -61,6 +61,8 @@ public class updateProfil2 extends HttpServlet {
         String Nume = request.getParameter("Nume");
         String Prenume = request.getParameter("Prenume");
         String Adresa= request.getParameter("Adresa");
+        String Verificat = request.getParameter("Verificat");
+        String Code= request.getParameter("Code");
 
         String Telefon= request.getParameter("Telefon");
         
@@ -74,6 +76,8 @@ public class updateProfil2 extends HttpServlet {
         userupdate.setPrenume(Prenume);
         userupdate.setAdresa(Adresa);
         userupdate.setTelefon(Telefon);
+        userupdate.setVerificat(Verificat);
+        userupdate.setCode(Code);
 
 		userDao.updateUser2(userupdate);
 		

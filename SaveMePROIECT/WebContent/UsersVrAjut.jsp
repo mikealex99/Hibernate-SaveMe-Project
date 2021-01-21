@@ -49,7 +49,8 @@ request.setAttribute("listUsers2", listUser2);%>
 				<form action="updateUser2" method="post">
 					<input type="hidden" class="input" name="ID" value="<%=existingAdmin.getId()%>">
                	 	<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
-				
+					<input type="hidden" class="inputID" name="Code" value="<%=user2.getCode()%>" />
+					<input type="hidden" class="inputID" name="Verificat" value="<%=user2.getVerificat()%>" />
 					<input type="hidden" class="inputID" name="Id_UserNev" value="<%=user2.getId_UserNev()%>" />
 					<input type="text" class="inputID" name="Id_user" value="<%=user2.getId()%>" />
 					<input type="text" class="inputNume" name="Nume" value="<%=user2.getNume()%>" />

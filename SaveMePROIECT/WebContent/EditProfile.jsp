@@ -73,9 +73,24 @@
 
    	  <input type="hidden" name="Id_cufar" value="<%=existingUser.getIdCufar()%>" />
       <input type="hidden" name="Id_user" value="<%=existingUser.getId()%>" />
+      <input type="hidden" name="Code" value="<%=existingUser.getCode()%>" />
+	  <input type="hidden" name="Verificat" value="<%=existingUser.getVerificat()%>" />
 				<fieldset class="form-group">
 					<label>Parola</label>
-					<input type="text" value="<%= existingUser.getParola()%>" class="form-control" name="Parola" required="required" >
+					<input type="password" value="<%= existingUser.getParola()%>" id="myInput" class="form-control" name="Parola" required="required"><br>
+					<input type="checkbox" onclick="myFunction()"> Arata parola
+					
+					<!-- JavaScript pentru a face vizibila parola -->
+					<script>
+					function myFunction() {
+						  var x = document.getElementById("myInput");
+						  if (x.type === "password") {
+						    x.type = "text";
+						  } else {
+						    x.type = "password";
+						  }
+						}
+					</script>
 				</fieldset>
 
 				<fieldset class="form-group">
@@ -99,7 +114,7 @@
 				</fieldset>	
 											
 				<button type="submit" class="btn btn-success" onclick="return confirm('Doriti sa modificati informatiile?')">Salveaza</button>
-        	    <button type="submit" formaction="deleteUserpage" class="btn btn-danger" style="margin-left:140px;" onclick="return confirm('Sunteti sigur ca doriti sa stergi acest cont?')">Sterge contul</button>    
+        	    <button type="submit" formaction="deleteUserpage" class="btn btn-danger" style="margin-left:140px;" onclick="return confirm('Sunteti sigur ca doriti sa stergeti acest cont?')">Sterge contul</button>    
   
   </div>
  </div>    

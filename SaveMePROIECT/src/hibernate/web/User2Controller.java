@@ -9,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import hibernate.dao.HibernateDao;
-
+import hibernate.dao.SendEmail2;
 import hibernate.model.Nevoie;
 import hibernate.model.User2;
 
@@ -51,7 +52,14 @@ public class User2Controller extends HttpServlet {
      String Prenume = request.getParameter("Prenume");
      String Adresa= request.getParameter("Adresa");
      String Telefon= request.getParameter("Telefon");
+     String Verificat="Nu";
     	        
+ 	//create instance object of the SendEmail Class
+     SendEmail2 sm = new SendEmail2();
+ 		//get the 6-digit code
+     String Code = sm.getRandom();
+     System.out.println("Code: "+Code);
+     
      User2 user = new User2();
 
      user.setId_UserNev(Id_UserNev);
@@ -61,6 +69,8 @@ public class User2Controller extends HttpServlet {
      user.setPrenume(Prenume);
      user.setAdresa(Adresa);
      user.setTelefon(Telefon);
+     user.setCode(Code);
+     user.setVerificat(Verificat);
 	        
      userDao.saveUser2(user);
     	        
@@ -70,9 +80,20 @@ public class User2Controller extends HttpServlet {
      nev.setId_UserNev(Id_UserNev);   	        
      userDao.saveNevoie(nev);
     	       
+     //call the send email method
+     boolean test = sm.sendEmail(user);
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("logarenevoi.jsp");
-    dispatcher.forward(request, response);
+     //check if the email send successfully
+     if(test){
+         HttpSession session  = request.getSession();
+         session.setAttribute("authcode2", user);
+         
+         RequestDispatcher dispatcher = request.getRequestDispatcher("verify2.jsp");
+         dispatcher.forward(request, response);
+     }else{
+         RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+         dispatcher.forward(request, response);
+ 	   }
     }
 }
 

@@ -51,6 +51,8 @@ request.setAttribute("listUsers", listUser);%>
                	 	<input type="hidden" class="input"  name="Utilizator" value="<%=existingAdmin.getUtilizator()%>">
                	 		
 					<input type="hidden" class="inputID" name="Id_cufar" value="<%=user.getIdCufar()%>" />
+					<input type="hidden" class="inputID" name="Code" value="<%=user.getCode()%>" />
+					<input type="hidden" class="inputID" name="Verificat" value="<%=user.getVerificat()%>" />
 					<input type="text" class="inputID" name="Id_user" value="<%=user.getId()%>" />	
 					<input type="text" class="inputNume" name="Nume" value="<%=user.getNume()%>" />
 					<input type="text" class="inputNume" name="Prenume" value="<%=user.getPrenume()%>" /><br><br>
