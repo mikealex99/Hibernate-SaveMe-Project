@@ -95,7 +95,7 @@ public class verifyCodePasswordServlet2 extends HttpServlet {
          }else{
              System.out.println("Incorrect verification code");
              
- 	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+ 	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError2.jsp");
  	        dispatcher.forward(request, response);
          }
 

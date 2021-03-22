@@ -15,7 +15,7 @@ User existingUser = u.selectProfil(Email); %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 <link rel="stylesheet" type="text/css" href="Css/adminstyle.css">
-<title>Admin</title>
+<title>Eroare</title>
 </head>
 <body>
 
@@ -37,7 +37,6 @@ User existingUser = u.selectProfil(Email); %>
 			<input type="hidden" name="Verificat" value="<%=existingUser.getVerificat()%>">
 			<input type="hidden" name="Id_user" value="<%=existingUser.getId()%>">
 			<input type="hidden" name="Email" value="<%=existingUser.getEmail()%>">
-			<input type="hidden" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
 			<input type="hidden" name="Parola" value="<%=existingUser.getParola()%>">
 			<input type="hidden" name="Nume" value="<%=existingUser.getNume()%>">
 			<input type="hidden" name="Prenume" value="<%=existingUser.getPrenume()%>">

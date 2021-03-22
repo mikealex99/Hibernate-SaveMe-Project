@@ -94,7 +94,7 @@ public class ReverifyPassServlet2 extends HttpServlet {
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyPass2.jsp");
 	        dispatcher.forward(request, response);
 	    }else{
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError2.jsp");
 	        dispatcher.forward(request, response);
 		   }
 		

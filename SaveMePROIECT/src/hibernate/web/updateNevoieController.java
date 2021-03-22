@@ -10,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import hibernate.dao.HibernateDao;
+import hibernate.dao.SendMessAdmin;
 import hibernate.model.Nevoie;
+import hibernate.model.User2;
 
 @WebServlet("/updateNevoie")
 public class updateNevoieController extends HttpServlet {
@@ -57,6 +60,14 @@ public class updateNevoieController extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("Id"));
 		int id_USERNEV = Integer.parseInt(request.getParameter("Id_UserNev"));
+		
+		User2 exUser2=userDao.selectUserProfil2(id_USERNEV);
+		String Email=exUser2.getEmail();
+		System.out.println("Email: "+Email);
+		
+		//Create instance of sendEmail
+		SendMessAdmin sm=new SendMessAdmin();
+		
 	 	String Bani = request.getParameter("Bani");
         String Descriere = request.getParameter("Descriere");
         String Haine = request.getParameter("Haine");
@@ -95,9 +106,24 @@ public class updateNevoieController extends HttpServlet {
         nevoie.setMesajAdmin(MesajAdmin);
    
         userDao.updateNevoie(nevoie);
+        
+        
+        
+      //call the send email method
+        boolean test = sm.sendEmail(nevoie);
+        
+        //check if the email send successfully
+        if(test){
+            HttpSession session  = request.getSession();
+            session.setAttribute("SendMess", nevoie);
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("UsersNevoie.jsp");
+            dispatcher.forward(request, response);
+        }else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+            dispatcher.forward(request, response);
+    	   }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("UsersNevoie.jsp");
-        dispatcher.forward(request, response);
 	}
 
 }

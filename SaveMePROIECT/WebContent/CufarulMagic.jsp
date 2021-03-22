@@ -29,10 +29,6 @@ Cufar existingCufar = u.selectCufar(id_cufar);
 			<li><form action="home.html" method="get">
                	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
                	</form>
-            </li>
-			<li><form action="admin.jsp" method="get">
-               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
-               	</form>
             </li>			
 			<li><form action="nevoiasiServlet" method=post>
                	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
@@ -114,7 +110,7 @@ if(titlu == null){ %>
 
 <!-- Butoanele salveaza/sterge -->
 <div class="actiuni" style="margin-left:650px;">
-<input class="btn btn-outline-success" type="submit"  value="Salveaza" style="margin-right:18px " onclick="return confirm('Sunteti sigur ca vreti sa modificati acesti gift?')">
+<input class="btn btn-outline-success" type="submit"  value="Salveaza" style="margin-right:18px " onclick="return confirm('Sunteti sigur ca doriti sa modificati acest gift?')">
 <button type="submit" formaction="deleteCufar2" class="btn btn-outline-danger"  onclick="return confirm('Doriti sa stergeti acest gift?')" >Sterge</button></form>
 </div>
 <%} %>

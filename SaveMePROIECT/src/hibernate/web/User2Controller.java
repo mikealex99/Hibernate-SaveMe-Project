@@ -53,48 +53,59 @@ public class User2Controller extends HttpServlet {
      String Adresa= request.getParameter("Adresa");
      String Telefon= request.getParameter("Telefon");
      String Verificat="Nu";
-    	        
- 	//create instance object of the SendEmail Class
-     SendEmail2 sm = new SendEmail2();
- 		//get the 6-digit code
-     String Code = sm.getRandom();
-     System.out.println("Code: "+Code);
+    	      
+     //verificam daca emailul introdus exista sau nu in baza de date     
+     User2 existingEmail2= userDao.selectProfil2(Email);
+    
+     if( existingEmail2 == null)
+     {
+       	 //apelam clasa SendEmail
+    	 SendEmail2 sm = new SendEmail2();
+ 		//obtinem codul generat random
+    	 String Code = sm.getRandom();
+    	 System.out.println("Code: "+Code);
      
-     User2 user = new User2();
+    	 User2 user = new User2();
 
-     user.setId_UserNev(Id_UserNev);
-     user.setEmail(Email);
-     user.setParola(Parola);
-     user.setNume(Nume);
-     user.setPrenume(Prenume);
-     user.setAdresa(Adresa);
-     user.setTelefon(Telefon);
-     user.setCode(Code);
-     user.setVerificat(Verificat);
+    	 user.setId_UserNev(Id_UserNev);
+    	 user.setEmail(Email);
+    	 user.setParola(Parola);
+    	 user.setNume(Nume);
+    	 user.setPrenume(Prenume);
+    	 user.setAdresa(Adresa);
+    	 user.setTelefon(Telefon);
+    	 user.setCode(Code);
+    	 user.setVerificat(Verificat);
 	        
-     userDao.saveUser2(user);
-    	        
-    	 
-    //inseram in 'Nevoie' acelasi ID din 'Users am nevoie de ajutor'
-     Nevoie nev = new Nevoie();
-     nev.setId_UserNev(Id_UserNev);   	        
-     userDao.saveNevoie(nev);
+    	 userDao.saveUser2(user);
+    	            	 
+    	 //inseram in 'Nevoie' acelasi ID din 'Users am nevoie de ajutor'
+    	 Nevoie nev = new Nevoie();
+    	 nev.setId_UserNev(Id_UserNev);   	        
+    	 userDao.saveNevoie(nev);
     	       
-     //call the send email method
-     boolean test = sm.sendEmail(user);
+    	 //apelam metoda send email
+    	 boolean test = sm.sendEmail(user);
 
-     //check if the email send successfully
-     if(test){
-         HttpSession session  = request.getSession();
-         session.setAttribute("authcode2", user);
+    	 //verificam daca emailul a fost trimis cu succes
+    	 if(test){
+    		 HttpSession session  = request.getSession();
+    		 session.setAttribute("authcode2", user);
          
-         RequestDispatcher dispatcher = request.getRequestDispatcher("verify2.jsp");
-         dispatcher.forward(request, response);
-     }else{
-         RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
-         dispatcher.forward(request, response);
+    		 RequestDispatcher dispatcher = request.getRequestDispatcher("verify2.jsp");
+    		 dispatcher.forward(request, response);
+    	 }else{
+     	   RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+     	   dispatcher.forward(request, response);
  	   }
+     }
+     else if(existingEmail2.getEmail() != null){
+          
+      	System.out.println("Emailul "+existingEmail2.getEmail()+" exista deja.");
+      	response.sendRedirect("inregajutExisEmail2.jsp");      	 
+ 
     }
+   }
 }
 
 

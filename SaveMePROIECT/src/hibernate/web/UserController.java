@@ -52,51 +52,58 @@ public class UserController extends HttpServlet {
     String Prenume = request.getParameter("Prenume");
     String Adresa= request.getParameter("Adresa");
     String Telefon= request.getParameter("Telefon");
-    String Verificat="Nu";
+    String Verificat="Nu";    
     
-	//create instance object of the SendEmail Class
-    SendEmail sm = new SendEmail();
-		//get the 6-digit code
-    String Code = sm.getRandom();
-    System.out.println("Code: "+Code);
-    
-    User user = new User();
-    
-    user.setEmail(Email);
-    user.setParola(Parola);
-    user.setNume(Nume);
-    user.setPrenume(Prenume);
-    user.setAdresa(Adresa);
-    user.setTelefon(Telefon);
-    user.setIdCufar(Id_cufar);
-    user.setCode(Code);
-    user.setVerificat(Verificat);
-    
-    userDao.saveUser(user);
-  	     
-    //inseram in 'Cufar' acelasi ID_cufar din 'Users vreau sa ajut'
-    Cufar cufar = new Cufar();
-    cufar.setIdCufar(Id_cufar);   	        
-    userDao.saveCufar(cufar);
-    	        
-    
-  //call the send email method
-    boolean test = sm.sendEmail(user);
-    
-  //check if the email send successfully
-    if(test){
-        HttpSession session  = request.getSession();
-        session.setAttribute("authcode", user);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("verify.jsp");
-        dispatcher.forward(request, response);
-    }else{
-        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
-        dispatcher.forward(request, response);
-	   }
-    
-
+    //verificam daca Emailul exista deja in baza de date / daca nu exista il adaugam 
+    User existingUser=userDao.selectProfil(Email);
+ 
+    if(existingUser == null) {
+	 
+	//apelam clasa SendEmail
+    	SendEmail sm = new SendEmail();
+ 	//obtinem codul generat random
+    	String Code = sm.getRandom();
+    	System.out.println("Code: "+Code);
+ 	
+    	User user = new User();
+ 	    
+ 	    user.setEmail(Email);
+ 	    user.setParola(Parola);
+ 	    user.setNume(Nume);
+ 	    user.setPrenume(Prenume);
+ 	    user.setAdresa(Adresa);
+ 	    user.setTelefon(Telefon);
+ 	    user.setIdCufar(Id_cufar);
+ 	    user.setCode(Code);
+ 	    user.setVerificat(Verificat);
+    	    
+ 	    userDao.saveUser(user);
+ 	  	     
+ 	//inseram in 'Cufar' acelasi ID_cufar din 'Users vreau sa ajut'
+ 	    Cufar cufar = new Cufar();
+ 	    cufar.setIdCufar(Id_cufar);   	        
+ 	    userDao.saveCufar(cufar);    	    	        
+ 	    
+ 	//apelam metoda send email
+ 	    boolean test = sm.sendEmail(user);
+ 	    
+ 	//verificam daca emailul a fost trimis cu succes
+ 	    if(test){
+ 	        HttpSession session  = request.getSession();
+ 	        session.setAttribute("authcode", user);
+ 	        
+ 	        RequestDispatcher dispatcher = request.getRequestDispatcher("verify.jsp");
+ 	        dispatcher.forward(request, response);
+ 	    }else{
+ 	        RequestDispatcher dispatcher = request.getRequestDispatcher("verifyError.jsp");
+ 	        dispatcher.forward(request, response);
+ 		   }
+ 	    
+    }else if(existingUser.getEmail()!=null) {	 
+    		System.out.println("Emailul "+existingUser.getEmail()+" exista deja.");
+    		response.sendRedirect("inregajutExisEmail.jsp");     
    }
+ }
 }
 
 

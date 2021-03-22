@@ -7,7 +7,6 @@
 <% String Email=request.getParameter("Email");
 User existingUser = u.selectProfil(Email); %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +24,6 @@ User existingUser = u.selectProfil(Email); %>
 		<ul><li><a href="home.html">Home</a></li></ul>
 	</nav>
 </header>
-
 
 <div class="wrapper">
   <div class="title">Introduceti codul de verificare</div>
@@ -56,7 +54,6 @@ User existingUser = u.selectProfil(Email); %>
 			<input type="hidden" name="Verificat" value="<%=existingUser.getVerificat()%>">
 			<input type="hidden" name="Id_user" value="<%=existingUser.getId()%>">
 			<input type="hidden" name="Email" value="<%=existingUser.getEmail()%>">
-			<input type="hidden" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">
 			<input type="hidden" name="Parola" value="<%=existingUser.getParola()%>">
 			<input type="hidden" name="Nume" value="<%=existingUser.getNume()%>">
 			<input type="hidden" name="Prenume" value="<%=existingUser.getPrenume()%>">
@@ -68,8 +65,6 @@ User existingUser = u.selectProfil(Email); %>
 		 	
   </div>
 </div>
-
-
 
 </body>
 </html>

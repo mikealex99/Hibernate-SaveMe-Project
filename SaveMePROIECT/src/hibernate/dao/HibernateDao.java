@@ -211,7 +211,6 @@ public List<User> selectAllUsers() {
 		}
 		return users;
  }
-	
 
 @SuppressWarnings("unchecked")
 public List<Cufar> selectAllCufar() {

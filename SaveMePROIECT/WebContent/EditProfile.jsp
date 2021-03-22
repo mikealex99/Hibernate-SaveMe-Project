@@ -25,10 +25,6 @@
 			<li><form action="home.html" method="get">
                	 		<button type="submit" formaction="home.html" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Home</button>               	 		
                	</form>
-            </li>
-			<li><form action="admin.jsp" method="get">
-               	 		<button type="submit" formaction="admin.jsp" style="background: none;border:none;color:white;font-weight:bold;font-size:19px;margin-left:3px;" >Admin</button>               	 		
-               	</form>
             </li>			
 			<li><form action="nevoiasiServlet" method=post>
                	     	<input type="hidden" class="input" name="Id_cufar" value="<%=existingUser.getIdCufar()%>">

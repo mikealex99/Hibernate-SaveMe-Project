@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hibernate.dao.HibernateDao;
+import hibernate.model.User2;
 
 /**
  * Servlet implementation class LogController
@@ -42,12 +43,22 @@ public class Log2Controller extends HttpServlet {
     private void authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String Email = request.getParameter("Email");
         String Parola = request.getParameter("Parola");
+        User2 ex=userDao.selectProfil2(Email);
+        
+        String verificat = ex.getVerificat();
+        System.out.println("CHECK CODE: "+verificat);
+        System.out.println("Email: "+Email);
        
-        	
-            if (userDao.validare(Email, Parola)) {
+        // Daca email-ul si parola sunt corecte logarea se realizeaza cu succes; 
+        // se deschide pagina 'nevoieform.jsp'	
+            if (userDao.validare(Email, Parola) && verificat.equals("Da")) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("nevoieform.jsp");
                 dispatcher.forward(request, response);
-            } else {         	
+            }else if(userDao.validare(Email, Parola) && verificat.equals("Nu")){           	
+                RequestDispatcher dispatcher = request.getRequestDispatcher("verify2.jsp");
+                dispatcher.forward(request, response);
+            } 
+            else {         	
                 RequestDispatcher dispatcher = request.getRequestDispatcher("errorLogin2.jsp");
                 dispatcher.forward(request, response);           
             }
