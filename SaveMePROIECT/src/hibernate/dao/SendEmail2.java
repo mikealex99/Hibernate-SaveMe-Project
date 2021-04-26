@@ -58,7 +58,7 @@ public boolean sendEmail(User2 user) {
         mess.setSubject("Cod de verificare utilizator");
         
 		//set message text
-        mess.setText("V-ati inregistrat cu succes, "+user.getPrenume()+" " +user.getNume()+". \n"+"Pentru activarea contului va rugam introduceti urmatorul cod: " + user.getCode());
+        mess.setText("V-ati inregistrat cu succes, "+user.getPrenume()+" " +user.getNume()+". \n"+"Pentru activarea contului va rugam sa introduceti urmatorul cod: " + user.getCode());
         //send the message
         Transport.send(mess);
         
