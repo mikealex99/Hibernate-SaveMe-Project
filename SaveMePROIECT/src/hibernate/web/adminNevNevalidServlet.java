@@ -14,7 +14,7 @@ import hibernate.dao.HibernateDao;
 import hibernate.model.Admin;
 
 /**
- * Servlet implementation class insertGiftServlet
+ * Servlet implementation class insertGiftServlett
  */
 @WebServlet("/adminNevNevalid")
 public class adminNevNevalidServlet extends HttpServlet {
